@@ -1,0 +1,8 @@
+source_name,indicator_type,indicator,country_class,danish_signal_count,non_danish_signal_count,evidence_notes
+FireHOL,cidr,192.0.2.0/28,Unknown,0,0,
+FireHOL,ip,198.51.100.7,Unknown,0,0,
+Spamhaus DROP,cidr,192.0.2.0/28,Unknown,0,0,
+Spamhaus DROP,cidr,203.0.113.8/32,Unknown,0,0,
+URLhaus,url,https://example.invalid/path,Unknown,0,0,
+blocklist.de,ip,198.51.100.7,Unknown,0,0,
+blocklist.de,ip,203.0.113.8,Unknown,0,0,

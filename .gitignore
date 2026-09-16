@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.key
+data/raw/
+data/normalized/
+results/
+logs/
+run_records/
+comparisons/
+archives/
+qa_report_*/

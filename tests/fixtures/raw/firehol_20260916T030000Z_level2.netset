@@ -1,0 +1,4 @@
+# Synthetic fixture using documentation-only addresses.
+192.0.2.0/28 # example network
+198.51.100.7
+

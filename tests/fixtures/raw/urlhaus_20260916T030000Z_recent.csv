@@ -1,0 +1,4 @@
+# Synthetic fixture; do not treat as a real URLhaus export.
+id,dateadded,url,url_status,last_online,threat,tags,host,ip_address,urlhaus_link
+1,2026-09-16 03:00:00,https://example.invalid/path,online,2026-09-16 03:00:00,malware_download,,example.invalid,,https://example.invalid
+

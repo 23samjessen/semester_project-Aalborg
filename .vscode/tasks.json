@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install project requirements",
+      "type": "shell",
+      "command": ".venv/bin/python -m pip install -r requirements.txt",
+      "problemMatcher": []
+    },
+    {
+      "label": "Collect public snapshots",
+      "type": "shell",
+      "command": "bash scripts/collect_snapshots.sh",
+      "options": {
+        "env": {
+          "BLOCKLIST_USER_AGENT": "AAU-blocklist-study/0.1 contact: YOUR-GROUP-EMAIL"
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run complete daily pipeline",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/run_daily_pipeline.py",
+      "options": {
+        "env": {
+          "BLOCKLIST_USER_AGENT": "AAU-blocklist-study/0.1 contact: YOUR-GROUP-EMAIL"
+        }
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Open beginner project menu",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/project_menu.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Replay saved data without downloading",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/run_daily_pipeline.py --skip-collection",
+      "problemMatcher": []
+    },
+    {
+      "label": "Normalize snapshots",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/normalize_snapshot.py --raw-dir data/raw --out data/normalized/observations.csv --errors logs/normalization_errors.csv",
+      "problemMatcher": []
+    },
+    {
+      "label": "Analyze observations",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/analyze_blocklists.py --input data/normalized/observations.csv --out-dir results",
+      "problemMatcher": []
+    },
+    {
+      "label": "Compare latest distinct days",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/compare_snapshots.py --input data/normalized/observations.csv --out-dir comparisons",
+      "problemMatcher": []
+    },
+    {
+      "label": "Classify Danish evidence",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/classify_danish.py --input data/normalized/observations.csv --evidence data/danish_evidence.csv --prefixes data/danish_prefixes.csv --out results/danish_classification.csv",
+      "problemMatcher": []
+    },
+    {
+      "label": "Validate Python and shell syntax",
+      "type": "shell",
+      "command": "bash -n scripts/collect_snapshots.sh && .venv/bin/python -m py_compile scripts/normalize_snapshot.py scripts/analyze_blocklists.py scripts/compare_snapshots.py scripts/run_daily_pipeline.py scripts/validate_project.py scripts/archive_project.py scripts/project_menu.py scripts/classify_danish.py build_report.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run full project checklist",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/validate_project.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Create timestamped backup ZIP",
+      "type": "shell",
+      "command": ".venv/bin/python scripts/archive_project.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build academic report",
+      "type": "shell",
+      "command": ".venv/bin/python build_report.py",
+      "problemMatcher": []
+    }
+  ]
+}
