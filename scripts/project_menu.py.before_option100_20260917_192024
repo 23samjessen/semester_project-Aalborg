@@ -729,124 +729,6 @@ def show_status() -> None:
     )
 
 
-
-def generate_final_study_package() -> None:
-    days = available_days()
-    available_count = len(days)
-    required_count = 30
-
-    print("\nFINAL STUDY EVIDENCE PACKAGE")
-    print(f"Available distinct UTC dates: {available_count}")
-    print(f"Required distinct UTC dates: {required_count}")
-
-    command = [
-        sys.executable,
-        "scripts/generate_final_results.py",
-    ]
-
-    if available_count < required_count:
-        remaining = required_count - available_count
-
-        print(
-            f"The final dataset is not ready. "
-            f"{remaining} additional distinct date(s) "
-            f"are required."
-        )
-        print(
-            "A preview will be labelled PREVIEW — NOT FINAL."
-        )
-
-        confirmation = input(
-            "Type PREVIEW to create a preliminary "
-            "evidence package, or press Enter to cancel: "
-        ).strip()
-
-        if confirmation != "PREVIEW":
-            print("Preview generation cancelled.")
-            return
-
-        command.append("--allow-preview")
-
-    else:
-        print(
-            "The minimum 30-day coverage requirement "
-            "has been reached."
-        )
-        print(
-            "This creates a new timestamped package and "
-            "does not overwrite previous evidence."
-        )
-
-        confirmation = input(
-            "Type FINAL to generate the final evidence "
-            "package, or press Enter to cancel: "
-        ).strip()
-
-        if confirmation != "FINAL":
-            print("Final package generation cancelled.")
-            return
-
-    exit_code = run_command(command)
-
-    if exit_code != 0:
-        print(
-            "The package was not created successfully. "
-            "Review the output above."
-        )
-        return
-
-    final_root = ROOT / "final_results"
-
-    packages = sorted(
-        [
-            directory
-            for directory in final_root.iterdir()
-            if directory.is_dir()
-        ],
-        key=lambda directory: directory.name,
-        reverse=True,
-    ) if final_root.exists() else []
-
-    if not packages:
-        print(
-            "No final-results package folder was found."
-        )
-        return
-
-    newest = packages[0]
-
-    print("\nPACKAGE CREATED SUCCESSFULLY")
-    print(f"Package folder: {newest}")
-    print(
-        f"Main summary: "
-        f"{newest / 'FINAL_STUDY_SUMMARY.md'}"
-    )
-    print(
-        f"Quality report: "
-        f"{newest / 'data_quality_report.csv'}"
-    )
-    print(
-        f"Source statistics: "
-        f"{newest / 'source_statistics.csv'}"
-    )
-    print(
-        f"Comparison coverage: "
-        f"{newest / 'comparison_coverage.csv'}"
-    )
-    print(
-        f"Evidence index: "
-        f"{newest / 'evidence_index.csv'}"
-    )
-    print(
-        f"Manifest: "
-        f"{newest / 'final_manifest.json'}"
-    )
-    print(
-        "Theoretical policy, listing-reason and "
-        "delisting conclusions still require cited "
-        "manual research."
-    )
-
 def print_menu() -> None:
     print("\n" + "=" * 72)
     print("PUBLIC BLOCKLIST STUDY — PROJECT MENU")
@@ -872,11 +754,6 @@ def print_menu() -> None:
             "12",
             "Inspect comparison results",
             "show dates, statistics, files and interpretation",
-        ),
-        (
-            "100",
-            "Generate final study package",
-            "create a checked preview or final evidence package",
         ),
         ("0", "Exit", "close the menu"),
     ]
@@ -917,8 +794,6 @@ def main() -> int:
             show_status()
         elif choice == "12":
             inspect_comparison()
-        elif choice == "100":
-            generate_final_study_package()
         else:
             print("That option is unavailable. Choose a number from the menu.")
 

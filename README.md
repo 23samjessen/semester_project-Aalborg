@@ -12,6 +12,24 @@ The commands below are written with comments so that every step has a clear purp
 ###########################
 
 
+## Check the connection:
+
+git status
+git remote -v
+
+For future updates:
+
+git add -A
+git commit -m "  "
+git push
+######
+## start here:
+
+export BLOCKLIST_USER_AGENT="AAU-blocklist-study/0.1 contact: sjesse26@student.aau.dk"
+
+python scripts/project_menu.py
+
+
 # cd ~/Downloads/Blocklist_Danish_Project_Package
 # python3 -m venv .venv
 source .venv/bin/activate
@@ -21,11 +39,20 @@ python -m pip install -r requirements.txt
 python scripts/project_menu.py
 
 # tomorrow 
+
 cd "/Users/sam/Downloads/Blocklist_Danish_Project_Package 3"
 source .venv/bin/activate
 export BLOCKLIST_USER_AGENT="AAU-blocklist-study/0.1 contact: sjesse26@student.aau.dk"
 python scripts/project_menu.py
 choose 1 then RUN 
+#######
+The downloaded files will be saved under:
+
+data/raw/
+data/normalized/
+results/
+logs/
+run_records/
 
 ## Display today’s summary directly in Terminal:
 column -s, -t < results/daily_summary.csv
