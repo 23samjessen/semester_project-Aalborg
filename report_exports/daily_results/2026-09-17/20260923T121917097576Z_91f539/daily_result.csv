@@ -1,0 +1,4 @@
+source,snapshot_day,unique_indicators,unique_ips_cidrs,unique_domains_urls,additions,removals,raw_rows
+FireHOL,2026-09-17,20990,20990,0,6253,9026,20990
+Spamhaus DROP,2026-09-17,1714,1714,0,0,10,1715
+blocklist.de,2026-09-17,27563,27563,0,7474,7090,27563

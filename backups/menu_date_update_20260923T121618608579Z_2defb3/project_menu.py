@@ -284,9 +284,38 @@ def show_day_logs(day: str) -> None:
 
 
 def show_today_result() -> None:
-    """Display and export a chosen date from saved daily results."""
-    from display_saved_result import run
-    run([])
+    day = utc_day()
+    print(f"UTC date used for the result: {day}")
+    print(f"Mac local time shown for orientation: {local_now().isoformat()}")
+
+    rows = [
+        row
+        for row in read_csv(ROOT / "results/daily_summary.csv")
+        if row.get("snapshot_day") == day
+    ]
+    print_table(
+        rows,
+        [
+            "source",
+            "snapshot_day",
+            "unique_indicators",
+            "unique_ips_cidrs",
+            "unique_domains_urls",
+            "additions",
+            "removals",
+            "raw_rows",
+        ],
+    )
+
+    if not rows:
+        print(
+            "No result for the current UTC date is available. Available dates: "
+            + (", ".join(available_days()) or "none")
+        )
+
+    runs = [run_id for run_id in latest_run_ids() if day in run_dates(run_id)]
+    if runs:
+        print(f"Newest run record for {day}: {runs[0]}")
 
 
 def show_today_logs() -> None:
@@ -830,7 +859,7 @@ def print_menu() -> None:
     items = [
         ("1", "Run complete daily pipeline", "download -> normalize -> analyze -> compare -> validate"),
         ("2", "Run again without downloading", "reuse saved raw files; useful for a safe replay"),
-        ("3", "Display saved result by date", "choose a UTC date; display and export saved results"),
+        ("3", "Display today's result", "show actual analysis rows for today's UTC date"),
         ("4", "Show today's collection log", "show URLs, status, timestamps, hashes and raw paths"),
         ("5", "Show logs for a chosen date", "inspect any saved UTC date"),
         ("6", "Run validation checklist", "check files, hashes, outputs, archives and comparisons"),
