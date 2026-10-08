@@ -1,0 +1,16 @@
+SAVED DAILY RESULT
+Observation date (UTC): 2026-10-06
+Exported at (UTC): 2026-10-06T07:14:45Z
+Source: /Users/sam/Desktop/AALBOG_UNI./first_year /semester_project_##/VSC-folders/Blocklist_Danish_Project_Package 3/results/daily_summary.csv
+
+Source        | Unique | IPs/CIDRs | Domains/URLs | Added | Removed | Raw rows
+FireHOL       | 4994   | 4994      | 0            | 1156  | 1288    | 4994    
+Spamhaus DROP | 1640   | 1640      | 0            | 0     | 51      | 1641    
+blocklist.de  | 18321  | 18321     | 0            | 10610 | 256     | 18321   
+
+Values are copied from saved analysis; no new collection or calculation was performed.
+NA or blank means unavailable/not applicable, not zero. Check logs for collection coverage.
+Additions/removals retain the comparison method used by the original analysis.
+This table alone does not establish Danish relevance or current maliciousness.
+
+Source SHA-256: 24f2a26a4fd4ec7537a02d58bd2dbd93684eda80acef27b8e7f0d0034d954614

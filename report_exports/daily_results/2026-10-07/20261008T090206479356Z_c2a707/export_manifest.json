@@ -1,0 +1,11 @@
+{
+  "observation_date_utc": "2026-10-07",
+  "exported_at_utc": "2026-10-08T09:02:06Z",
+  "export_id": "20261008T090206479356Z_c2a707",
+  "source_path": "/Users/sam/Desktop/AALBOG_UNI./first_year /semester_project_##/VSC-folders/Blocklist_Danish_Project_Package 3/results/daily_summary.csv",
+  "source_sha256": "ed8109f44039d66f0c6c11fe4fd517fdd8eb87bda322e9aabcea7c5937876f8f",
+  "source_rows_exported": 3,
+  "network_requests": 0,
+  "method": "Filter existing daily summary by snapshot_day; no recalculation.",
+  "image_error": "No module named 'matplotlib'"
+}

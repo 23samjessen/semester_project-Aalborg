@@ -41,10 +41,15 @@ python scripts/project_menu.py
 # tomorrow 
 ##running commands >>>>>>>>
 
+cd "/Users/sam/Desktop/AALBOG_UNI./first_year /semester_project_##/VSC-folders/Blocklist_Danish_Project_Package 3" && \
+source .venv/bin/activate && \
+export BLOCKLIST_USER_AGENT="AAU-blocklist-study/0.1 contact: sjesse26@student.aau.dk" && \
+python3 scripts/project_menu.py
+
 cd "/Users/sam/Desktop/AALBOG_UNI./first_year /semester_project_##/VSC-folders/Blocklist_Danish_Project_Package 3"
 source .venv/bin/activate
 export BLOCKLIST_USER_AGENT="AAU-blocklist-study/0.1 contact: sjesse26@student.aau.dk"
-python scripts/project_menu.py
+python3 scripts/project_menu.py
 
 
 choose 1 then RUN 
